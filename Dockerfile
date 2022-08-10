@@ -3,6 +3,9 @@ FROM python:3.9-slim
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache notebook jupyterlab
 
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
 # create user with a home directory
 ARG NB_USER
 ARG NB_UID
