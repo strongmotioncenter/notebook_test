@@ -101,9 +101,5 @@ COPY cloudburst/scripts /opt/cloudburst
 COPY gmrecords_helper.sh /working
 
 ENTRYPOINT python3 /opt/cloudburst/fw_entrypoint.py
-# copy over files from binder repository into $HOME
-COPY . ${HOME}
 
-# set working directory to $HOME
-WORKDIR ${HOME}
 
