@@ -13,7 +13,11 @@ RUN adduser --disabled-password \
     --gecos "Default user" \
     --uid ${NB_UID} \
     ${NB_USER}
+    
+COPY . ${HOME}
+WORKDIR ${HOME}
 
+WORKDIR /home/${NB_USER}
 # Multistage build from: https://pythonspeed.com/articles/conda-docker-image-size/
 FROM debian:stable
 
@@ -114,6 +118,5 @@ ENTRYPOINT python3 /opt/cloudburst/fw_entrypoint.py
 
 
     
-COPY . ${HOME}
-WORKDIR ${HOME}
+
 USER ${USER}
