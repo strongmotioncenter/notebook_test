@@ -18,4 +18,11 @@ WORKDIR ${HOME}
 USER ${USER}
 
 # Multistage build from: https://pythonspeed.com/articles/conda-docker-image-size/
+FROM arkottke/gmrecords
+
+# copy over files from binder repository into $HOME
+COPY . ${HOME}
+
+# set working directory to $HOME
+WORKDIR ${HOME}
 
