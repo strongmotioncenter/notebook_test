@@ -10,7 +10,7 @@ ENV USER ${NB_USER}
 ENV HOME /home/${NB_USER}
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt  
+RUN pip install -r requirements.txt
 
 RUN adduser --disabled-password \
     --gecos "Default user" \
