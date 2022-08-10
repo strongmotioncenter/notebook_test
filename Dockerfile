@@ -19,7 +19,4 @@ RUN adduser --disabled-password \
  
 COPY . ${HOME}
 WORKDIR ${HOME}
-
-WORKDIR /home/${NB_USER}
-
 USER ${USER}
