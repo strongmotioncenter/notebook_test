@@ -15,7 +15,7 @@ RUN pip install -r requirements.txt
 RUN adduser --disabled-password \
     --gecos "Default user" \
     --uid ${NB_UID} \
-    ${NB_USER
+    ${NB_USER}
  
 COPY . ${HOME}
 WORKDIR ${HOME}
