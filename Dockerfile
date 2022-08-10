@@ -1,5 +1,20 @@
-# Multistage build from: https://pythonspeed.com/articles/conda-docker-image-size/
+FROM python:3.9-slim
+# install the notebook package
+RUN pip install --no-cache --upgrade pip && \
+    pip install --no-cache notebook jupyterlab
 
+# create user with a home directory
+ARG NB_USER=
+ARG NB_UID
+ENV USER ${NB_USER}
+ENV HOME /home/${NB_USER}
+
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
+
+# Multistage build from: https://pythonspeed.com/articles/conda-docker-image-size/
 FROM debian:stable
 
 # Install required packages
@@ -97,21 +112,7 @@ COPY gmrecords_helper.sh /working
 
 ENTRYPOINT python3 /opt/cloudburst/fw_entrypoint.py
 
-FROM python:3.9-slim
-# install the notebook package
-RUN pip install --no-cache --upgrade pip && \
-    pip install --no-cache notebook jupyterlab
 
-# create user with a home directory
-ARG NB_USER
-ARG NB_UID
-ENV USER ${NB_USER}
-ENV HOME /home/${NB_USER}
-
-RUN adduser --disabled-password \
-    --gecos "Default user" \
-    --uid ${NB_UID} \
-    ${NB_USER}
     
 COPY . ${HOME}
 WORKDIR ${HOME}
