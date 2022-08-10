@@ -4,6 +4,8 @@ obspy
 pyasdf
 vcrpy
 pyzmq
+pandas
+folium
 
 # USGS repositories
 git+https://github.com/usgs/MapIO@master#egg=mapio
